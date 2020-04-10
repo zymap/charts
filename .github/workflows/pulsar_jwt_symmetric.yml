@@ -22,10 +22,10 @@ on:
   pull_request:
     branches:
       - '*'
-    paths:
-      - 'charts/local-storage-provisioner/**'
-      - 'charts/pulsar/**'
-      - '.github/workflows/**'
+#    paths:
+#      - 'charts/local-storage-provisioner/**'
+#      - 'charts/pulsar/**'
+#      - '.github/workflows/**'
 jobs:
   lint-test:
     runs-on: ubuntu-latest
