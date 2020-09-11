@@ -105,7 +105,7 @@ monitoring:
   # alerting - alert-manager
   alert_manager: true
   # monitoring - loki
-  loki: true
+  loki: false
   # monitoring - datadog
   datadog: false
 
@@ -114,6 +114,7 @@ monitoring:
 ## Control what images to use for each component
 images:
   zookeeper:
+<<<<<<< Updated upstream
     repository: streamnative/pulsar-all
     tag: 2.6.0-sn-4
     pullPolicy: IfNotPresent
@@ -144,6 +145,38 @@ images:
   functions:
     repository: streamnative/pulsar-all
     tag: 2.6.0-sn-4
+=======
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  bookie:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  presto:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  autorecovery:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  broker:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  proxy:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  pulsar_detector:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+    pullPolicy: IfNotPresent
+  functions:
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+>>>>>>> Stashed changes
     pullPolicy: IfNotPresent
   prometheus:
     repository: prom/prometheus
@@ -538,6 +571,16 @@ bookkeeper:
   ## BookKeeper Cluster Initialize
   ## templates/bookkeeper-cluster-initialize.yaml
   metadata:
+<<<<<<< Updated upstream
+=======
+    image:
+      # the image used for running `bookkeeper-cluster-initialize` job
+      # repository: apachepulsar/pulsar-all
+      # tag: 2.5.0
+      repository: streamnative/platform
+      tag: 1.1.0-rc
+      pullPolicy: IfNotPresent
+>>>>>>> Stashed changes
     ## Set the resources used for running `bin/bookkeeper shell initnewcluster`
     ##
     resources:
@@ -712,8 +755,13 @@ pulsar_metadata:
     # the image used for running `pulsar-cluster-initialize` job
     # repository: apachepulsar/pulsar-all
     # tag: 2.5.0
+<<<<<<< Updated upstream
     repository: streamnative/pulsar-all
     tag: 2.6.0-sn-4
+=======
+    repository: streamnative/platform
+    tag: 1.1.0-rc
+>>>>>>> Stashed changes
     pullPolicy: IfNotPresent
   ## set an existing configuration store
   # configurationStore:
