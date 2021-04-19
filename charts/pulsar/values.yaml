@@ -87,7 +87,7 @@ components:
   # toolset
   toolset: true
   # pulsar manager
-  pulsar_manager: true
+  pulsar_manager: false
   # pulsar sql
   sql_worker: false
   # kop
@@ -100,15 +100,15 @@ components:
 ## Control what components of the monitoring stack to deploy for the cluster
 monitoring:
   # monitoring - prometheus
-  prometheus: true
+  prometheus: false
   # monitoring - grafana
-  grafana: true
+  grafana: false
   # monitoring - node_exporter
-  node_exporter: true
+  node_exporter: false
   # alerting - alert-manager
-  alert_manager: true
+  alert_manager: false
   # monitoring - loki
-  loki: true
+  loki: false
   # monitoring - datadog
   datadog: false
 
@@ -118,15 +118,15 @@ monitoring:
 images:
   zookeeper:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   bookie:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   presto:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   # NOTE: allow overriding the presto worker image
   # presto_worker:
@@ -135,23 +135,23 @@ images:
   #   pullPolicy: IfNotPresent
   autorecovery:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   broker:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   proxy:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   pulsar_detector:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   functions:
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   # NOTE: allow overriding the toolset image
   # toolset:
@@ -190,7 +190,7 @@ images:
 ## The chart is using cert-manager for provisioning TLS certs for
 ## brokers and proxies.
 tls:
-  enabled: false
+  enabled: true
   # common settings for generating certs
   common:
     # 90d
@@ -204,7 +204,7 @@ tls:
     keyEncoding: pkcs8
   # settings for generating certs for proxy
   proxy:
-    enabled: false
+    enabled: true
     cert_name: tls-proxy
     untrustedCa: true
   # settings for generating certs for proxy
@@ -213,7 +213,7 @@ tls:
     cert_name: tls-pulsar-detector
   # settings for generating certs for broker
   broker:
-    enabled: false
+    enabled: true
     cert_name: tls-broker
   # settings for generating certs for bookies
   bookie:
@@ -221,7 +221,7 @@ tls:
     cert_name: tls-bookie
   # settings for generating certs for zookeeper
   zookeeper:
-    enabled: false
+    enabled: true
     cert_name: tls-zookeeper
   # settings for generating certs for recovery
   autorecovery:
@@ -273,7 +273,7 @@ auth:
 ## for components within a Pulsar cluster
 certs:
   internal_issuer:
-    enabled: false
+    enabled: true
     component: internal-cert-issuer
     type: selfsigning
   public_issuer:
@@ -810,7 +810,7 @@ pulsar_metadata:
     # repository: apachepulsar/pulsar-all
     # tag: 2.5.0
     repository: streamnative/pulsar-all
-    tag: 2.7.0.6
+    tag: 2.7.1
     pullPolicy: IfNotPresent
   ## set an existing configuration store
   # configurationStore:
@@ -838,7 +838,7 @@ broker:
   # use a component name that matches your grafana configuration
   # so the metrics are correctly rendered in grafana dashboard
   component: broker
-  replicaCount: 3
+  replicaCount: 1
   ports:
     http: 8080
     https: 8443
@@ -1051,7 +1051,7 @@ proxy:
   # use a component name that matches your grafana configuration
   # so the metrics are correctly rendered in grafana dashboard
   component: proxy
-  replicaCount: 3
+  replicaCount: 1
   # nodeSelector:
     # cloud.google.com/gke-nodepool: default-pool
   probe:
@@ -1163,7 +1163,7 @@ proxy:
     websockettls: 9443
   service:
     annotations: {}
-    type: ClusterIP
+    type: LoadBalancer
     extraSpec: {}
   ## Proxy PodDisruptionBudget
   ## templates/proxy-pdb.yaml
