@@ -18,7 +18,7 @@
 #
 
 # Flag to control whether to run initialize job
-initialize: true
+initialize: false
 
 ###
 ### K8S Settings
@@ -77,15 +77,15 @@ components:
   # bookkeeper
   bookkeeper: true
   # bookkeeper - autorecovery
-  autorecovery: true
+  autorecovery: false
   # broker
   broker: true
   # functions
-  functions: true
+  functions: false
   # proxy
   proxy: true
   # toolset
-  toolset: true
+  toolset: false
   # pulsar manager
   pulsar_manager: false
   # pulsar sql
@@ -393,7 +393,7 @@ ingress:
     tls:
       termination: false
   control_center:
-    enabled: true
+    enabled: false
     component: control-center
     endpoints:
       grafana: true
@@ -492,7 +492,7 @@ zookeeper:
     useSeparateDiskForTxlog: false
     data:
       name: data
-      size: 50Gi
+      size: 20Gi
       local_storage: true
       # storageClassName: ""
       ## If the storage class is left undefined when using persistence
@@ -655,14 +655,14 @@ bookkeeper:
   # Definition of the serviceAccount used to run bookies.
   serviceAccount:
     # Specifies whether to use a service account to run this component
-    use: true
+    use: false
     # Specifies whether a service account should be created
-    create: true
+    create: false
     # The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
     # whether to create a cluster role
-    clusterRole: true
+    clusterRole: false
     # Extra annotations for the serviceAccount definition. This can either be
     # YAML or a YAML-formatted multi-line templated string map of the
     # annotations to apply to the serviceAccount.
@@ -884,7 +884,7 @@ broker:
   # Definition of the serviceAccount used to run brokers.
   serviceAccount:
     # Specifies whether to use a service account to run this component
-    use: true
+    use: false
     # Specifies whether a service account should be created
     create: true
     # The name of the service account to use.
@@ -1019,9 +1019,9 @@ pulsar_detector:
   # Definition of the serviceAccount used to run brokers.
   serviceAccount:
     # Specifies whether to use a service account to run this component
-    use: true
+    use: false
     # Specifies whether a service account should be created
-    create: true
+    create: false
     # The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
@@ -1090,9 +1090,9 @@ proxy:
   # Definition of the serviceAccount used to run proxies.
   serviceAccount:
     # Specifies whether to use a service account to run this component
-    use: true
+    use: false
     # Specifies whether a service account should be created
-    create: true
+    create: false
     # The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
@@ -1294,9 +1294,9 @@ prometheus:
   # Definition of the serviceAccount used to run brokers.
   serviceAccount:
     # Specifies whether to use a service account to run this component
-    use: true
+    use: false
     # Specifies whether a service account should be created
-    create: true
+    create: false
     # The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
@@ -1305,7 +1305,7 @@ prometheus:
     # annotations to apply to the serviceAccount.
     annotations: {}
     # specify to use a clusterRole, set to false to only allow in a single namespace
-    clusterRole: true
+    clusterRole: false
   volumes:
     # use a persistent volume or emptyDir
     persistence: true
@@ -1588,7 +1588,7 @@ pulsar_manager:
 ##
 
 rbac:
-  enable: true
+  enable: false
   roleName: pulsar-operator
   roleBindingName: pulsar-operator-cluster-role-binding
 
